@@ -1,0 +1,77 @@
+#!/usr/bin/env python3
+# Copyright (c) 2025 GeoUtils developers
+#
+# This file is part of the implicit_bathy project:
+#  https://.../implicit_bathy
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+#
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+"""
+CLI Analyze
+"""
+
+import argparse
+import sys
+from pathlib import Path
+
+from implicit_bathy.analysis.analyze_report import (
+    analyze_csv,
+    compute_boxplot,
+    synthesis_png,
+)
+from implicit_bathy.config.read_config_file import ReadConfigFile
+
+
+def run(config_file: str, csv_file: str):
+    """
+    Run the different setup scripts
+    Args:
+        config_file (str): Configuration file
+        csv_file (str): Parameters csv file
+    """
+    cfg = ReadConfigFile(config_file)
+    out = cfg.config.dataprocessing.output_path
+    analyze_csv(out)
+    synthesis_png(out)
+    compute_boxplot(out, csv_file)
+
+
+def arguments_cli() -> argparse.ArgumentParser:
+    """Create parser for command line arguments"""
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument(
+        "-c",
+        "--config",
+        type=Path,
+        required=True,
+        help="Path to configuration file",
+    )
+    parser.add_argument(
+        "-csv_file",
+        dest="csv_file",
+        help="path to csv file configuration file",
+        required=False,
+    )
+    return parser
+
+
+def main():
+    """Main function"""
+    args = arguments_cli().parse_args()
+    run(args.config, args.config_ressources)
+
+
+if __name__ == "__main__":
+    sys.exit(main())

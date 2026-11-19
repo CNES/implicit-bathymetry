@@ -1,0 +1,61 @@
+# This is a list of parameters to be used for the training.py script.
+
+# If you want to fix the random seed, enter an number here.
+# Otherwise, leave empty and the process will be random
+seed : 3
+
+# Parameters for the data
+save_path : ~/train
+min_wse : 830
+max_wse : 920
+
+# ponderation with phase noise std in SWOT's data
+weighted_by_phase_noise: true
+weighted_function: inverse
+
+# Parameters for the model
+bayesian_model : True
+
+# GROUND - Model parameters
+ground_model: garf
+x_freq_enc_dim : 0 # for mlp relu
+width1 : 16
+depth1 : 4
+# for garf
+gaussian_act_sigma: 0.1
+
+# WATER - Model parameters
+water_model : mlp
+# for MLP
+width2 : 8
+depth2 : 2
+# for LUT
+n_dates : ''
+
+# 2-branch Model
+# only for classic model non-bayesian :
+softmax_factor :
+
+water_probability: gaussian
+ground_probability: cauchy
+
+# Optimizer
+# for the begining of the training : update all weights from the model
+optimizer_name : "Adam" # "SGD" or "Adam" or "RAdam" or "AdamW"
+lr : 0.005
+# for the Water Loss (3rd Loss) : update only the weights of the water model
+wl_optimizer_name : "AdamW" # "SGD" or "Adam" or "RAdam" or "AdamW"
+wl_lr : 0.001 # trop élevé : ca fait des nan. trop petit : ca ne cv pas. le log(KL) doit passer sous 0.
+
+
+# Training
+n_epochs : 6000
+save_model_epoch :
+plot_every_epoch: 500
+
+# parameters for training bayesian model
+n_epochs_uncert: 1000
+lambda_uncert: 3  # it's a ponderation -> choose uncert or label loss
+lambda_label: # it's a ponderation
+n_epochs_wloss: 2000
+lambda_wloss: 20  # it's a ponderation

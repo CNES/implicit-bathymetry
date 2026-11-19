@@ -1,0 +1,18 @@
+# To create a PyTorch .pt dataset from a .gpkg file :
+
+# path of .parquet file :
+dataset_path:  "~/dataset.parquet"
+
+# the ROI of the lake, IN GPKG ABSOLUTELY (will be used for x,y normalisation) :
+roi_gpkg : "~/ROI_Ebro_lonlat_partial_rectangle1.gpkg"
+
+
+# WSE filtering (can be 830-850 if only water points) :
+min_wse : 830
+max_wse : 920
+
+# crs to convert to (we need meters). This will be used to convert the SWOT points and the contour ROI.
+convert_to_crs: "EPSG:32630"
+
+# saving path, must end with .pt :
+saving_path : "~/creation_dataset_pytorch.pt"

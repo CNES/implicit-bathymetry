@@ -1,0 +1,10 @@
+parametre,,,
+id,1,2,3
+classes_to_keep,1_2_3_4,1_2_3_4,1_2_3_4
+min_wse,830,830,830
+max_wse,850,850,850
+land_phase_shift,1,1,1
+seed,3,4,5
+weighted_by_phase_noise,True,True,True
+weighted_function,inverse,inverse,inverse
+lambda_label,1,1,1

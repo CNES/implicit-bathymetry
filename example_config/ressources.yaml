@@ -1,0 +1,43 @@
+implicit_bathy_chain:
+  name : "implicit_lake"
+  nb_cpu : 1
+  ram : "2gb"
+  walltime : "05:00:00"
+
+download :
+  name : "download"
+  nb_cpu : 1
+  ram : "2gb"
+  walltime : "01:00:00"
+
+dataset_gpkg :
+  name : "dataset_gpkg"
+  nb_cpu : 1
+  ram : "8gb"
+  walltime : "01:00:00"
+
+dataset_pt :
+  name : "dataset_pt"
+  nb_cpu : 1
+  ram : "8gb"
+  walltime : "01:00:00"
+
+train :
+  name : "train"
+  nb_gpu : 1
+  ram : "8gb"
+  partition : "gpu_a100"
+  qos : "gpu_all"
+  walltime : "02:00:00"
+
+inference :
+  name : "inference"
+  nb_cpu : 1
+  ram : "4gb"
+  walltime : "01:00:00"
+
+analyze :
+  name : "analyze"
+  nb_cpu : 1
+  ram : "4gb"
+  walltime : "00:10:00"

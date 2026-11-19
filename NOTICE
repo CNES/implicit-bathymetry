@@ -1,0 +1,74 @@
+ImplicitLake Copyright (c)
+
+This software is distributed under the Apache Software License (ASL) v2.0, see
+LICENSE file or http://www.apache.org/licenses/LICENSE-2.0 for details.
+
+ImplicitLake depends on or includes source code from the following third-party
+software:
+
+Python: programming language that lets you work quickly and integrate systems more effectively.
+Copyright (c) 2001-2020 Python Software Foundation. All Rights reserved.
+Website: http://python.org/
+License: Python Software License.
+
+Pytorch: Deep learning framework used to build, train, and deploy neural networks
+Website: https://github.com/pytorch/pytorch
+License: BSD 3 Clause.
+
+NumPy: The fundamental package for scientific computing with Python.
+Copyright (c) 2005-2020, NumPy Developers.
+Website: https://numpy.org/
+License: BSD 3 Clause.
+
+Fiona: reads and writes geographic data files
+Copyright (c) 2007, Sean C. Gillies
+Website: https://github.com/Toblerity/Fiona
+License: BSD 3 Clause.
+
+Shapely: Manipulation and analysis of geometric objects
+Copyright (c) 2007-2022, Sean C. Gillies, Casper van der Wel and contributors.
+Website: https://github.com/Toblerity/Shapely
+License: BSD 3 Clause.
+
+Xarray: N-D labeled arrays and datasets in Python
+Copyright 2014-2019, xarray Developers
+Website: http://xarray.pydata.org
+License: Apache v2.0.
+
+GeoPandas : open source project to make working with geospatial data
+Copyright (c) 2013-2022
+Website: https://github.com/geopandas/geopandas/
+License: BSD 3 Clause.
+
+Pytest: Testing module for Python codes
+Copyright Holger Krekel and others, 2004-2021.
+Website: https://github.com/pytest-dev/pytest
+License: MIT.
+
+Xarray: N-D labeled arrays and datasets in Python
+Copyright 2014-2019, xarray Developers
+Website: http://xarray.pydata.org
+License: Apache v2.0.
+
+Dask: Parallel computing with task scheduling
+Copyright (c) 2014-2018, Anaconda, Inc. and contributors
+Website: https://dask.org/
+License: BSD 3 Clause.
+
+Dask Jobqueue: Deploy Dask on job schedulers like PBS, SLURM, and SGE
+Copyright (c) 2018, Anaconda, Inc. and contributors
+Website: https://github.com/dask/dask-jobqueue
+License: BSD 3 Clause.
+
+Dask Distributed: A distributed task scheduler for Dask
+Copyright (c) 2015-2017, Anaconda, Inc. and contributors
+Website: http://distributed.dask.org/
+License: BSD 3 Clause.
+
+GDAL: Processing and manipulating geospatial raster and vector data
+Website: https://www.gdal.org/
+License: licence X11/MIT
+
+NetCDF4: Python library used to read, write, and manipulate NetCDF
+Website: https://github.com/Unidata/netcdf4-python
+License: MIT

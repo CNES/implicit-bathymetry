@@ -1,0 +1,74 @@
+#Section dataprocessing
+
+dataprocessing :
+  output_path : "/my/output/path"
+  dsm_path :
+
+# To create a single .gpkg file from many .nc SWOT files : -----------------------
+# folder containing the .nc files :
+  dataset_path :
+# the ROI of the lake, IN GPKG ABSOLUTELY (will be used by PiXCdust)  :
+  roi_gpkg : "/my/ROI/ROI_Ebro_lonlat_partial_rectangle1.gpkg"
+  start_date : "2024-03-06"
+  end_date : "2024-06-08"
+  id_feature_swot : 2160009383
+# WSE filtering :
+  classes_to_keep :
+  - 4
+  - 1
+  min_wse : 830
+  max_wse : 850
+  land_phase_shift : 1
+  remove_nc_file : False
+
+#Section train
+
+train:
+  seed : 3
+  bayesian_model : True
+  monitor_every_epoch : 10
+  ground_model: garf
+  x_freq_enc_dim : # for mlp relu
+  width1 : 16
+  depth1 : 4
+  gaussian_act_sigma: 0.1 # for garf
+  weighted_by_phase_noise: True
+  weighted_function : inverse
+  water_model : mlp
+  width2 : 16
+  depth2 : 4
+  softmax_factor :
+  water_probability: gaussian
+  ground_probability: cauchy
+  n_epochs : 10000
+  plot_every_epoch: 500
+  n_epochs_wloss: 5500
+  lambda_wloss: 20
+  lambda_label : 1
+  lambda_uncert :
+  n_epochs_uncert :
+  optimizer_name : "Adam"
+  lr : 0.005
+  wl_optimizer_name : "AdamW"
+  wl_lr : 0.001
+  confidence_threshold: 0.99
+  save_model_epoch : -6500
+
+#Section Inference
+inference :
+  plot_density : 128
+  fig_size : 5
+  vt_path:
+  max_wse_for_X_plot: 850
+  min_wse_for_dsm : 835
+  max_wse_for_dsm : 840
+  water_threshold_proba : 0.99
+  ground_threshold_proba : 0.1
+  surface_inference : mean # mean / bayesian
+  volume_inference : bayesian # mean / bayesian
+  p_w_filter : 0.5 #need to be required if mode bayesian
+
+slurm:
+  account: "campus"
+
+builders: {}

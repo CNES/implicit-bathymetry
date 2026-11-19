@@ -1,0 +1,100 @@
+[build-system]
+requires = ["setuptools>=80", "setuptools-scm[simple]>=9.2"]
+
+[project]
+name = "implicit_bathy"
+dynamic = ["version"]
+readme = "README.md"
+description = "implicit_bathy"
+authors = [{name = "Alice Lorillou", email = "alice.lorillou@cs-soprasteria.com"}]
+
+dependencies = [
+    "dask==2025.1.0",
+    "distributed==2025.1.0",
+    "dask-jobqueue==0.9.0",
+    "pydantic==2.11.10",
+    "dill==0.4.0",
+    "numpy==1.26.4",
+    "pandas==2.3.3",
+    "matplotlib==3.10.7",
+    "fiona",
+    "requests==2.32.5",
+    "pixcdust==0.1.2",
+    "zarr==2.18.7",
+    "bmi-topography==0.9.0",
+    "planetary-computer==1.0.0",
+    "earthaccess==0.18.0",
+    "scipy==1.16.3",
+    "scikit-image==0.25.2",
+    "pytest==9.1.1",
+    "pre_commit",
+    "graphviz==0.21",
+    "openpyxl==3.1.5",
+    "torch==2.9.1",
+]
+# we fix python 3.12 due to incompatibility with fixed dependencies above
+requires-python = ">=3.12,<3.13"
+
+[project.optional-dependencies]
+dev = ["pytest", "pre-commit"]
+
+[project.scripts]
+"implicit_bathy" = "implicit_bathy.orchestrator:main"
+"data_downloading" = "implicit_bathy.download.data_setup_CLI:main"
+"data_processing" = "implicit_bathy.preprocess.dataset_CLI:main"
+"train" = "implicit_bathy.train.train_CLI:main"
+"inference" = "implicit_bathy.inference.inference_CLI:main"
+"task_launcher.py" = "implicit_bathy.orchestration.task_launcher:main"
+"ImplicitBathy" = "implicit_bathy.orchestration.ImplicitBathy:main"
+"ImplicitBathyOrchestrator" = "implicit_bathy.orchestration.ImplicitBathyOrchestrator:main"
+
+# PRECOMMIT CONFIGURATION
+[tool.ruff]
+line-length = 80
+
+[tool.ruff.lint]
+ignore = ["F722"]
+
+[tool.ruff.lint.isort]
+case-sensitive = true
+force-single-line = false
+
+[tool.ruff.lint.pycodestyle]
+max-line-length = 80
+
+[tool.pytest.ini_options]
+log_cli = true
+log_cli_level = "INFO"
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "largedata: marks tests that need large datasets (deselect with '-m \"not largedata\"')",
+]
+
+[tool.coverage.run]
+source = [
+    "src/",
+    "tests/",
+    ]
+
+[tool.coverage.report]
+show_missing = true
+
+[tool.pixi.workspace]
+channels = ["https://artifactory.cnes.fr/artifactory/api/conda/conda-forge-remote", "conda-forge"]
+platforms = ["linux-64"]
+
+[tool.pixi.pypi-options]
+# Priority betwee extra and main index is counter-intuitive
+# see https://pixi.prefix.dev/latest/reference/pixi_manifest/#alternative-registries
+extra-index-urls = ["https://artifactory.cnes.fr/artifactory/api/pypi/pypi/simple"]
+index-url = "https://pypi.org/simple"
+
+[tool.pixi.dependencies]
+python = "3.12.*"
+pytest = ">=9.1.1,<10"
+pre-commit = ">=4.6.1,<5"
+
+[tool.pixi.pypi-dependencies]
+implicit_bathy = { path = ".", editable = true }
+
+[tool.pixi.tasks]

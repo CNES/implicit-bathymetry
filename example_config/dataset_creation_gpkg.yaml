@@ -1,0 +1,13 @@
+# To create a single .gpkg file from many .nc SWOT files :
+
+# folder containing the .nc files :
+dataset_path : "~/data_swot/"
+
+# the ROI of the lake, IN GPKG ABSOLUTELY (will be used by PiXCdust)  :
+roi_gpkg : "~/ROI_Ebro_lonlat_partial_rectangle1.gpkg"
+
+# saving path, must end with .parquet :
+saving_path : "~/dataset.parquet"
+
+# you can remove nc files
+remove_nc_file: false
